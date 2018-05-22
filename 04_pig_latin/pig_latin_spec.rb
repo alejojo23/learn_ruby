@@ -67,6 +67,18 @@ describe "#translate" do
 
   # Test-driving bonus:
   # * write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
-  # * retain the punctuation from the original phrase
+  it "translates a capitalized word" do
+    s = translate("PRUEBA")
+    expect(s).to eq("UEBAPRAY")
+  end
 
+  it "traslates phrase with capitalized words" do
+    s = translate("ESTA ES LA PENÚLTIMA PRUEBA")
+    expect(s).to eq("ESTAAY ESAY ALAY ENÚLTIMAPAY UEBAPRAY")
+  end
+  # * retain the punctuation from the original phrase
+  it "retain the punctuation" do
+    s = translate("no pude con esta me dice no implicit conversion of nil into string")
+    expect(s).to eq("onay udepay oncay estaay emay iceday onay implicitay onversioncay ofay ilnay intoay ingstray")
+  end
 end

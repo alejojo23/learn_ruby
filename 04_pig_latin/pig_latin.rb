@@ -2,7 +2,13 @@
 def translate (string)
   vowels = %w(a e i o u)
   @final = ''
+  @bandera = 0
   string.split(' ').each_with_index { |word, index|
+    if word[0] == word[0].upcase
+      @bandera = 1
+      word = word.downcase
+    end
+
     if vowels.include?(word[0])
       word += 'ay'
     else
@@ -33,9 +39,20 @@ def translate (string)
       end
     end
     if index == 0 
-      @final += word
+      if @bandera == 1
+        @final += word.upcase
+        @bandera = 0
+      else
+        @final += word
+      end
     else
-      @final += ' ' + word
+      if @bandera == 1
+        @final += ' ' + word.upcase
+        @bandera = 0
+      else
+        @final += ' ' + word
+      end
+      
     end
   }
   return @final
